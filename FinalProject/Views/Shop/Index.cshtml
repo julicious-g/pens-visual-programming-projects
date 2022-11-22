@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CommercialItem>
+
+@{
+    ViewBag.Title = "Equipment Shop";
+    Layout = "_Layout";
+}
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Point</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Item.Name</td>
+            <td>@item.Price</td>
+            <td>@item.Point</td>
+            <td>
+                <a class="btn btn-primary" asp-controller="Shop" asp-action="Purchase" asp-route-itemId="@item.ItemId">Purchase</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

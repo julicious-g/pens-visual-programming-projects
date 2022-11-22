@@ -1,0 +1,14 @@
+﻿@using FinalProject.Models
+@model Player
+
+@{
+    ViewBag.Title = $"{Model.Username} - Profile";
+    Layout = "_Layout";
+}
+
+<h2>Id          : @Model.Id</h2>
+<h2>Username    : @Model.Username</h2>
+<h2>Level       : @Model.Level</h2>
+<h2>Exp         : @Model.Experience</h2>
+<h2>Cash        : @Model.Cash</h2>
+<h2>Points      : @Model.Points.Sum(p => p.Amount)</h2>

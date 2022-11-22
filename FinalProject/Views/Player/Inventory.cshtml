@@ -1,0 +1,42 @@
+﻿@using FinalProject.Contexts
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.EntityFrameworkCore
+
+@model FinalProject.Models.Player
+@inject GameContext _Context
+
+@{
+    ViewBag.Title = $"{Model.Username} - Inventory";
+    Layout = "_Layout";
+    var Items = await _Context.Items.ToListAsync();
+
+    string GetItemName(string itemId)
+    {
+        var item = Items.FirstOrDefault(i => i.Id.Equals(itemId));
+
+        return item.Name;
+    }
+}
+
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Item</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Inventories.Select(i => i.ItemId).Distinct())
+        {
+            <tr>
+                <td>@GetItemName(item)</td>
+                <td>@Model.Inventories.Count(i => i.ItemId.Equals(item))</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
